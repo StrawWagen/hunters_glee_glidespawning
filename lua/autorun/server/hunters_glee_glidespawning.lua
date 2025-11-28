@@ -6,6 +6,13 @@ local vec_down = Vector( 0, 0, -1 )
 terminator_Extras.collected = false
 local glideClasses = {}
 
+local alwaysTooBig = {
+    ["glide_gtav_blimp"] = true,
+    ["glide_gtav_blimp2"] = true,
+    ["glide_gtav_avenger"] = true,
+
+}
+
 local function collect()
     terminator_Extras.collected = true
 
@@ -22,7 +29,7 @@ local function collect()
     for _, data in pairs( scripted_ents.GetList() ) do
         local t = data.t
 
-        if Validate( t ) and t.GlideCategory then
+        if Validate( t ) and t.GlideCategory and not alwaysTooBig[ t.ClassName ] then
             i = i + 1
             glideClasses[ i ] = t.ClassName
 
