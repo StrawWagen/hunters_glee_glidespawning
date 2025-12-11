@@ -64,16 +64,17 @@ local spawnedGlideVehicles = {}
 
 local minVehAreaSize = 450
 
-GAMEMODE.VehiclesThisRound = GAMEMODE.VehiclesThisRound or 0
+local GM = GM or GAMEMODE
+GM.VehiclesThisRound = GM.VehiclesThisRound or 0
 
 hook.Add( "glee_blockjeepspawning", "glee_glide_blockjeeps", function() return true end )
 
 -- replace jeep spawning system with glide vehicle pool spawning
 hook.Add( "glee_connectedgroups_end", "glee_spawnaglideifwewant", function()
-    if GAMEMODE.navmeshUnderSkySurfaceArea < surfaceAreaPerVehicle then return end -- only spawn on maps with lots of space under the sky
+    if GM.navmeshUnderSkySurfaceArea < surfaceAreaPerVehicle then return end -- only spawn on maps with lots of space under the sky
 
     -- determine max vehicles for this map
-    local vehiclesOnThisMap = GAMEMODE.navmeshUnderSkySurfaceArea / surfaceAreaPerVehicle
+    local vehiclesOnThisMap = GM.navmeshUnderSkySurfaceArea / surfaceAreaPerVehicle
     vehiclesOnThisMap = vehiclesOnThisMap - bite
 
     if vehiclesOnThisMap < 0.75 then return end
@@ -81,7 +82,7 @@ hook.Add( "glee_connectedgroups_end", "glee_spawnaglideifwewant", function()
     vehiclesOnThisMap = math.floor( vehiclesOnThisMap )
 
     hook.Add( "huntersglee_round_into_active", "glee_vehiclesthisroundcounter", function()
-        GAMEMODE.VehiclesThisRound = math.Rand( vehiclesOnThisMap * 0.1, vehiclesOnThisMap * 1 )
+        GM.VehiclesThisRound = math.Rand( vehiclesOnThisMap * 0.1, vehiclesOnThisMap * 1 )
 
     end )
 
@@ -97,7 +98,7 @@ hook.Add( "glee_connectedgroups_end", "glee_spawnaglideifwewant", function()
             liveCount = liveCount + 1
 
         end
-        if liveCount >= GAMEMODE.VehiclesThisRound then
+        if liveCount >= GM.VehiclesThisRound then
             nextVehicleSpawnCheck = CurTime() + GAMEMODE:GenSpawnAdjusted( 45 )
             return
 
