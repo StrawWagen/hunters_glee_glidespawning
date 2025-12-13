@@ -64,7 +64,7 @@ local spawnedGlideVehicles = {}
 
 local minVehAreaSize = 450
 
-local GM = GM or GAMEMODE
+local GM = gmod.GetGamemode()
 GM.VehiclesThisRound = GM.VehiclesThisRound or 0
 
 hook.Add( "glee_blockjeepspawning", "glee_glide_blockjeeps", function() return true end )
