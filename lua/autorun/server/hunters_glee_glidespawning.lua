@@ -99,7 +99,7 @@ hook.Add( "glee_connectedgroups_end", "glee_spawnaglideifwewant", function()
 
         end
         if liveCount >= GAMEMODE.VehiclesThisRound then
-            nextVehicleSpawnCheck = CurTime() + GAMEMODE:GenSpawnAdjusted( 45 )
+            nextVehicleSpawnCheck = CurTime() + GAMEMODE:ScaledGenericSpawnerRate( 45 )
             return
 
         end
@@ -250,7 +250,7 @@ hook.Add( "glee_connectedgroups_end", "glee_spawnaglideifwewant", function()
         end
 
         GAMEMODE:addProceduralSpawnJob( vehicleJob )
-        nextVehicleSpawnCheck = CurTime() + GAMEMODE:GenSpawnAdjusted( 30 )
+        nextVehicleSpawnCheck = CurTime() + GAMEMODE:ScaledGenericSpawnerRate( 30 )
 
     end )
 end )
