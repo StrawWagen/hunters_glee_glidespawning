@@ -67,7 +67,7 @@ local minVehAreaSize = 450
 hook.Add( "glee_blockjeepspawning", "glee_glide_blockjeeps", function() return true end )
 
 -- replace jeep spawning system with glide vehicle pool spawning
-hook.Add( "glee_connectedgroups_end", "glee_spawnaglideifwewant", function()
+hook.Add( "glee_navpatcher_finish", "glee_spawnaglideifwewant", function()
 
     if not GAMEMODE.VehiclesThisRound then GAMEMODE.VehiclesThisRound = 0 end
 
